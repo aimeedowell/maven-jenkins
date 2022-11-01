@@ -31,11 +31,12 @@ pipeline {
            } 
            timeout (time: 2, unit: 'MINUTES')
            {
-               script 
-               {
-                  waitForQualityGate abortPipeline: true
-               }
+              script 
+              {
+                 waitForQualityGate abortPipeline: true
+              }
            } 
+        }
       } 
       stage('Dev Environment') 
       { 
