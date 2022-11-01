@@ -21,6 +21,16 @@ pipeline {
               echo "Running unit tests"
             }
       }
+      stage('Sonarqube Analysis - SAST')  
+      { 
+        steps  
+        { 
+           withSonarQubeEnv('SonarQube')  
+           { 
+              sh "mvn sonar:sonar -Dsonar.projectKey=maven-jenkins-pipeline -Dsonar.host.url=http://34.89.44.49:9000/"  
+           } 
+        } 
+      } 
       stage('Dev Environment') 
       { 
           steps 
@@ -33,16 +43,6 @@ pipeline {
           steps 
           { 
               echo "I'm now deploying to the test or QA environment" 
-          } 
-      }
-      stage('SonarQube Environment') 
-      { 
-          steps 
-          { 
-              mvn clean verify sonar:sonar \
-              -Dsonar.projectKey=maven-jenkins-pipeline \
-              -Dsonar.host.url=http://34.89.44.49:9000 \
-              -Dsonar.login=sqp_2442a5b3e62ac01152313c8a9342501754bbb14c
           } 
       }
       stage('UAT Environment') 
