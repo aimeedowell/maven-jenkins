@@ -28,13 +28,13 @@ pipeline {
            withSonarQubeEnv('SonarQube')  
            { 
               sh "mvn sonar:sonar -Dsonar.projectKey=maven-jenkins-pipeline -Dsonar.host.url=http://34.89.44.49:9000/"  
-              timeout (time: 2, unit: 'MINUTES')
-              {
-                script 
-                {
-                   waitForQualityGate abortPipeline: true
-                }
-              }
+//               timeout (time: 2, unit: 'MINUTES')
+//               {
+//                 script 
+//                 {
+//                    waitForQualityGate abortPipeline: true
+//                 }
+//               }
            } 
         }
       } 
